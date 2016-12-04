@@ -1,0 +1,25 @@
+msenv.dll:
+disable no raise window on focus
+.500D6E2A: 50                             push         eax
+.500D6E2B: FF5114                         call         d,[ecx][014]
+.500D6E2E: 8B06                          5mov          eax,[esi]
+.500D6E30: 8BCE                           mov          ecx,esi
+.500D6E32: EBDD                           jmps        .0500D6E11 --?6
+.500D6E34: 8B0D2C467550                  4mov          ecx,[05075462C] --?7
+.500D6E3A: 3BCB                           cmp          ecx,ebx
+.500D6E3C: 0F8564110C00                   jnz         .050197FA6 --?8
+.500D6E42: FF15D81D0050                   call         GetForegroundWindow
+.500D6E48: 8BF0                           mov          esi,eax
+.500D6E4A: FF15401E0050                   call         GetActiveWindow
+.500D6E50: 3BC3                           cmp          eax,ebx
+.500D6E52: 740F                           jz          .0500D6E63 --?9
+.500D6E54: 3B35E0417550                   cmp          esi,[0507541E0] --?A
+.500D6E5A: 7507                           jnz         .0500D6E63 --?9
+.500D6E5C: 50                             push         eax
+.500D6E5D: FF15441E0050                   call         BringWindowToTop   <--NOP
+.500D6E63: 5E                            9pop          esi
+.500D6E64: 8B45F8                        1mov          eax,[ebp][-8]
+.500D6E67: 5F                             pop          edi
+.500D6E68: 5B                             pop          ebx
+.500D6E69: C9                             leave
+.500D6E6A: C20C00                         retn         0000C ; -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
