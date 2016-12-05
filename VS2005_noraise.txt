@@ -23,3 +23,29 @@ disable no raise window on focus
 .500D6E68: 5B                             pop          ebx
 .500D6E69: C9                             leave
 .500D6E6A: C20C00                         retn         0000C ; -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
+
+
+msenv.dll v 8.0.50727.42
+.50093787: 50                             push         eax
+.50093788: FF5114                         call         d,[ecx][014]
+.5009378B: 8B06                          2mov          eax,[esi]
+.5009378D: 8BCE                           mov          ecx,esi
+.5009378F: EBDD                           jmps        .05009376E --?3
+.50093791: 8B0DECD27450                  1mov          ecx,[05074D2EC] --?4
+.50093797: 3BCB                           cmp          ecx,ebx
+.50093799: 0F8591FA1000                   jnz         .0501A3230 --?5
+.5009379F: FF15E01D0050                   call         GetForegroundWindow
+.500937A5: 8BF0                           mov          esi,eax
+.500937A7: FF15401E0050                   call         GetActiveWindow
+.500937AD: 3BC3                           cmp          eax,ebx
+.500937AF: 740F                           jz          .0500937C0 --?6
+.500937B1: 3B35B4CE7450                   cmp          esi,[05074CEB4] --?7
+.500937B7: EB07                           jmps        .0500937C0 --?6   <<-patched
+.500937B9: 50                             push         eax
+.500937BA: FF15441E0050                   call         BringWindowToTop <<-nop
+.500937C0: 5E                            6pop          esi
+.500937C1: 8B45F8                         mov          eax,[ebp][-8]
+.500937C4: 5F                             pop          edi
+.500937C5: 5B                             pop          ebx
+.500937C6: C9                             leave
+.500937C7: C20C00                         retn         0000C ; -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
